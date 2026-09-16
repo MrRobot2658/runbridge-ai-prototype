@@ -29,3 +29,11 @@ npm run preview
 ```
 
 This repository is a product prototype. All account, usage, billing, and model data is fictional.
+
+## Docker
+
+```bash
+docker compose up -d --build
+```
+
+The prototype is served on `http://localhost:3300`.
