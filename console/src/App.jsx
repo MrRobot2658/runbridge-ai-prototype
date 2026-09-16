@@ -37,18 +37,52 @@ import {
 
 const nav = [
   { section: 'Workspace' },
-  { id: 'overview', label: 'Overview', icon: Gauge },
+  { id: 'overview', label: 'Dashboard', icon: Gauge },
   { id: 'playground', label: 'Playground', icon: MessageSquareText },
-  { id: 'models', label: 'Models', icon: Box },
-  { section: 'Build' },
   { id: 'keys', label: 'API Keys', icon: KeyRound },
-  { id: 'usage', label: 'Usage', icon: BarChart3 },
-  { id: 'activity', label: 'Activity', icon: Activity },
-  { section: 'Manage' },
-  { id: 'billing', label: 'Billing', icon: WalletCards },
-  { id: 'team', label: 'Team', icon: Users },
-  { id: 'settings', label: 'Settings', icon: Settings },
+  { id: 'usage', label: 'Usage Log', icon: BarChart3 },
+  { id: 'midjourney', label: 'Midjourney Log', icon: Sparkles },
+  { id: 'task', label: 'Task Log', icon: Activity },
+  { id: 'detail', label: 'Data Overview', icon: Layers3 },
+  { section: 'Finance' },
+  { id: 'billing', label: 'Credits', icon: WalletCards },
+  { id: 'referral', label: 'Referral', icon: Users },
+  { id: 'personal', label: 'Personal Settings', icon: Settings },
+  { section: 'Administration' },
+  { id: 'channel', label: 'Channel', icon: Zap },
+  { id: 'redemption', label: 'Redemption Code', icon: Clipboard },
+  { id: 'referral_reward', label: 'Referral Reward', icon: GiftIcon },
+  { id: 'user', label: 'User Management', icon: Users },
+  { id: 'setting', label: 'System Settings', icon: Settings },
+  { section: 'Resources' },
+  { id: 'models', label: 'Models', icon: Box },
+  { id: 'model_routes', label: 'Model Routes', icon: ArrowRight },
+  { id: 'routing_rules', label: 'Routing Rules', icon: ShieldCheck },
+  { id: 'cooling_center', label: 'Cooling Center', icon: Gauge },
+  { id: 'route_state_center', label: 'Route State Center', icon: Activity },
+  { id: 'audit', label: 'Audit Log', icon: Clipboard },
+  { id: 'auto_router_lanes', label: 'Auto Router', icon: Zap },
+  { id: 'model_details', label: 'Model Details', icon: Code2 },
+  { id: 'blogs', label: 'Blogs', icon: BookOpen },
+  { id: 'dicts', label: 'Dictionary', icon: BookOpen },
+  { id: 'discount', label: 'Discount', icon: CreditCard },
+  { id: 'user_log', label: 'User Log', icon: Activity },
+  { id: 'user_data_overview', label: 'User Data Overview', icon: BarChart3 },
+  { id: 'organization', label: 'Organization Management', icon: Users },
+  { section: 'Quick links' },
+  { id: 'server_status', label: 'Server Status', icon: ShieldCheck },
+  { id: 'document', label: 'API Documentation', icon: BookOpen },
+  { id: 'pricing', label: 'Model Pricing', icon: CreditCard },
+  { id: 'quick_start', label: 'Quick Start', icon: ArrowRight },
+  { id: 'terms_of_service', label: 'Terms of Service', icon: BookOpen },
+  { id: 'privacy_policy', label: 'Privacy Policy', icon: ShieldCheck },
+  { id: 'discord', label: 'Discord', icon: MessageSquareText },
+  { id: 'github', label: 'Github', icon: Code2 },
 ];
+
+function GiftIcon(props) {
+  return <Sparkles {...props} />;
+}
 
 const modelData = [
   { name: 'GPT-5.2', provider: 'OpenAI', tag: 'Reasoning', input: '$1.75', output: '$14.00', latency: '820 ms', color: '#0b64e5' },
@@ -69,7 +103,7 @@ const chart = [34, 52, 41, 66, 54, 72, 68, 91, 77, 96, 82, 112, 101, 124];
 function Brand({ compact = false }) {
   return (
     <div className="brand">
-      <div className="brand-mark"><img src="/runbridge-logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 5 }} /></div>
+      <div className="brand-mark"><img src="/runbridge-logo.png" alt="Runbridge" /></div>
       {!compact && <span>runbridge<span className="brand-dot">.ai</span></span>}
     </div>
   );
@@ -220,9 +254,42 @@ function GenericPage({ id, showToast }) {
     activity: ['Activity', 'Monitor recent requests and workspace events.', Activity],
     team: ['Team', 'Invite collaborators and manage workspace access.', Users],
     settings: ['Settings', 'Configure workspace preferences and defaults.', Settings],
+    midjourney: ['Midjourney Log', 'Review image generation requests and results.', Sparkles],
+    task: ['Task Log', 'Track asynchronous generation tasks.', Activity],
+    detail: ['Data Overview', 'Explore workspace usage and request data.', BarChart3],
+    referral: ['Referral', 'Invite developers and track referral credits.', Users],
+    personal: ['Personal Settings', 'Manage your profile and notification preferences.', Settings],
+    channel: ['Channel', 'Configure provider channels and credentials.', Zap],
+    redemption: ['Redemption Code', 'Create and manage credit redemption codes.', CreditCard],
+    referral_reward: ['Referral Reward', 'Review referral reward settings and payouts.', WalletCards],
+    user: ['User Management', 'Manage users, roles, and account access.', Users],
+    setting: ['System Settings', 'Configure system-wide defaults and integrations.', Settings],
+    model_routes: ['Model Routes', 'Configure model-to-provider routing.', ArrowRight],
+    routing_rules: ['Routing Rules', 'Apply fallback and traffic routing rules.', ShieldCheck],
+    cooling_center: ['Cooling Center', 'Review providers temporarily placed in cooldown.', Gauge],
+    route_state_center: ['Route State Center', 'Monitor route health and availability.', Activity],
+    audit: ['Audit Log', 'Review administrative and workspace events.', Clipboard],
+    auto_router_lanes: ['Auto Router', 'Configure automatic routing lanes.', Zap],
+    model_details: ['Model Details', 'Manage model metadata and pricing details.', Code2],
+    blogs: ['Blogs', 'Manage published updates and articles.', BookOpen],
+    dicts: ['Dictionary', 'Manage translation and system dictionary entries.', BookOpen],
+    discount: ['Discount', 'Manage pricing discounts and promotions.', CreditCard],
+    user_log: ['User Log', 'Review user-level request activity.', Activity],
+    user_data_overview: ['User Data Overview', 'Review aggregated user usage data.', BarChart3],
+    organization: ['Organization Management', 'Manage organizations and workspace access.', Users],
+    server_status: ['Server Status', 'Review service health and availability.', ShieldCheck],
+    document: ['API Documentation', 'OpenAPI-compatible guides and examples.', BookOpen],
+    pricing: ['Model Pricing', 'Compare current model pricing across providers.', CreditCard],
+    quick_start: ['Quick Start', 'Follow the steps to send your first request.', ArrowRight],
+    terms_of_service: ['Terms of Service', 'Review the terms that govern use of Runbridge.', BookOpen],
+    privacy_policy: ['Privacy Policy', 'Review how Runbridge handles your data.', ShieldCheck],
+    discord: ['Discord', 'Connect with the Runbridge developer community.', MessageSquareText],
+    github: ['Github', 'Explore the Runbridge developer resources.', Code2],
   };
-  const [title, subtitle, Icon] = configs[id];
-  return <><PageTitle title={title} subtitle={subtitle} action={id === 'team' ? <button className="primary" onClick={() => showToast('Invitation sent')}><Plus size={16} />Invite member</button> : null} /><section className="panel generic"><div className="generic-icon"><Icon size={24} /></div><h2>{id === 'activity' ? 'Recent workspace events' : id === 'team' ? 'Workspace members' : 'Workspace profile'}</h2>{id === 'activity' ? ['GPT-5.2 request completed · 812 ms', 'Production API key used · US East', 'Balance auto-recharged · $50.00', 'Claude Sonnet 4.5 request completed · 691 ms'].map((x, i) => <div className="activity-row" key={x}><span className="activity-dot" /><div><b>{x}</b><small>{i * 7 + 2} minutes ago</small></div></div>) : id === 'team' ? ['Alex Morgan|Owner|alex@runbridge.ai', 'Maya Chen|Developer|maya@example.com', 'Jordan Lee|Viewer|jordan@example.com'].map((x) => { const [n, r, e] = x.split('|'); return <div className="member-row" key={e}><span className="avatar small">{n.split(' ').map((p) => p[0]).join('')}</span><div><b>{n}</b><small>{e}</small></div><span className="tag">{r}</span></div>; }) : <div className="settings-form"><label className="form-label">Workspace name<input className="field" defaultValue="Acme AI" /></label><label className="form-label">Default model<select className="field" defaultValue="GPT-5.2">{modelData.map((m) => <option key={m.name}>{m.name}</option>)}</select></label><label className="form-label">Monthly budget<input className="field" defaultValue="$500" /></label><button className="primary" onClick={() => showToast('Settings saved')}>Save changes</button></div>}</section></>;
+  const [title, subtitle, Icon] = configs[id] || ['Workspace', 'Manage your Runbridge workspace.', Settings];
+  const rows = ['Configuration saved · mock state', 'Latest request completed · 742 ms', 'Provider connection healthy · US East'];
+  const isWorkspaceSettings = ['settings', 'personal'].includes(id);
+  return <><PageTitle title={title} subtitle={subtitle} action={id === 'team' ? <button className="primary" onClick={() => showToast('Invitation sent')}><Plus size={16} />Invite member</button> : null} /><section className="panel generic"><div className="generic-icon"><Icon size={24} /></div><h2>{id === 'activity' ? 'Recent workspace events' : id === 'team' ? 'Workspace members' : title}</h2>{id === 'activity' ? ['GPT-5.2 request completed · 812 ms', 'Production API key used · US East', 'Balance auto-recharged · $50.00', 'Claude Sonnet 4.5 request completed · 691 ms'].map((x, i) => <div className="activity-row" key={x}><span className="activity-dot" /><div><b>{x}</b><small>{i * 7 + 2} minutes ago</small></div></div>) : id === 'team' ? ['Alex Morgan|Owner|alex@runbridge.ai', 'Maya Chen|Developer|maya@example.com', 'Jordan Lee|Viewer|jordan@example.com'].map((x) => { const [n, r, e] = x.split('|'); return <div className="member-row" key={e}><span className="avatar small">{n.split(' ').map((p) => p[0]).join('')}</span><div><b>{n}</b><small>{e}</small></div><span className="tag">{r}</span></div>; }) : <div className="settings-form">{isWorkspaceSettings ? <><label className="form-label">Workspace name<input className="field" defaultValue="Acme AI" /></label><label className="form-label">Default model<select className="field" defaultValue="GPT-5.2">{modelData.map((m) => <option key={m.name}>{m.name}</option>)}</select></label><label className="form-label">Monthly budget<input className="field" defaultValue="$500" /></label></> : rows.map((row) => <div className="activity-row" key={row}><span className="activity-dot" /><div><b>{row}</b><small>Mock data · just now</small></div></div>)}<button className="primary" onClick={() => showToast('Settings saved')}>Save changes</button></div>}</section></>;
 }
 
 function PageTitle({ title, subtitle, action }) { return <div className="page-title"><div><h1>{title}</h1><p>{subtitle}</p></div>{action}</div>; }
@@ -252,7 +319,7 @@ export default function App() {
       </aside>
       {mobileNav && <div className="nav-scrim" onClick={() => setMobileNav(false)} />}
       <div className="main-shell">
-        <header><button className="menu-btn" onClick={() => setMobileNav(true)}><Menu size={20} /></button><div className="mobile-brand"><Brand /></div><div className="header-spacer" /><button className="docs-btn"><BookOpen size={16} />Docs</button><button className="icon-btn notification"><Bell size={18} /><i /></button><button className="credit-pill" onClick={() => go('billing')}><CreditCard size={15} />$84.20</button><span className="avatar header-avatar">AM</span></header>
+        <header><button className="menu-btn" onClick={() => setMobileNav(true)}><Menu size={20} /></button><div className="mobile-brand"><Brand /></div><div className="header-spacer" /><button className="docs-btn" onClick={() => go('document')}><BookOpen size={16} />Docs</button><button className="icon-btn notification"><Bell size={18} /><i /></button><button className="credit-pill" onClick={() => go('billing')}><CreditCard size={15} />$84.20</button><span className="avatar header-avatar">AM</span></header>
         <main>{content}</main>
       </div>
       <Toast message={toast} />

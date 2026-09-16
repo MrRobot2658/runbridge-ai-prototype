@@ -4,8 +4,8 @@ A blue-themed Runbridge.ai prototype containing two independent frontend project
 
 ## Projects
 
-- `console/` — CometAPI-inspired dashboard for models, playground, API keys, usage, billing, activity, team, and settings. Docker port: `3300`.
-- `website/` — public Runbridge.ai marketing site with hero, models, platform, pricing, developer CTA, and responsive navigation. Docker port: `3400`.
+- `console/` — CometAPI information architecture with Workspace, Finance, Administration, and Quick links groups. It includes dashboard, playground, API keys, usage logs, Midjourney/task logs, credits, referrals, personal/workspace settings, channels, routing, model management, audit, users, organizations, docs, pricing, status, and legal pages. Docker port: `3300`.
+- `website/` — public Runbridge.ai marketing site following CometAPI’s page sequence: hero, stats, recommended models, pricing, integrations, production features, integration flow, use cases, testimonials, FAQ, CTA, and footer. Docker port: `3400`.
 
 ## Included
 
