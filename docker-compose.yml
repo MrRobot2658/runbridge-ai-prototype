@@ -1,10 +1,18 @@
 services:
   runbridge-prototype:
     build:
-      context: .
+      context: ./console
       dockerfile: Dockerfile
     container_name: runbridge-ai-prototype
     restart: unless-stopped
     ports:
       - "3300:80"
 
+  runbridge-website:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    container_name: runbridge-ai-website
+    restart: unless-stopped
+    ports:
+      - "3400:80"

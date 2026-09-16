@@ -69,7 +69,7 @@ const chart = [34, 52, 41, 66, 54, 72, 68, 91, 77, 96, 82, 112, 101, 124];
 function Brand({ compact = false }) {
   return (
     <div className="brand">
-      <div className="brand-mark"><span /><span /><span /></div>
+      <div className="brand-mark"><img src="/runbridge-logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 5 }} /></div>
       {!compact && <span>runbridge<span className="brand-dot">.ai</span></span>}
     </div>
   );
