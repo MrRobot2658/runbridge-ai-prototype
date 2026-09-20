@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.sites-runtime/
+
+# The static site includes source CSS, JavaScript, images, and deployable HTML.
+!/dist/

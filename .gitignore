@@ -6,3 +6,4 @@ dist
 .env.*
 !.env.example
 output/
+/runbridge-ai-source.zip

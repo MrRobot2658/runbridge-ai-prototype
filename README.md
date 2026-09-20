@@ -27,14 +27,22 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` for the console. For the website, use `cd website && npm install && npm run dev` and open `http://localhost:5174`.
+Open `http://localhost:5173` for the console. The website uses static HTML, CSS, and JavaScript with a Python page generator; it does not require npm. From the repository root, run:
+
+```bash
+python3 -m http.server 5174 --directory website/dist
+```
+
+Open `http://localhost:5174` for the website. See [website/README.md](website/README.md) for editing and deployment details.
 
 ## Production build
 
 ```bash
 cd console && npm run build
-cd ../website && npm run build
+cd ../website && python3 scripts/build-pages.py
 ```
+
+The website's `dist/` directory is committed because it contains both generated pages and the source styles, scripts, and images needed for deployment.
 
 This repository is a product prototype. All account, usage, billing, and model data is fictional.
 

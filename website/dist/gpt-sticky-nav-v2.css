@@ -1,0 +1,63 @@
+html,
+body {
+  overflow-x: clip;
+}
+
+.detail-tabs {
+  position: sticky;
+  top: 82px;
+  z-index: 9;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  white-space: normal;
+  padding-block: 0;
+  background: rgb(255 255 255 / 96%);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 18px rgb(16 32 61 / 6%);
+}
+
+.detail-tabs a {
+  min-width: 0;
+  padding: 16px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.detail-tabs::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc((100vw - 100%) / -2);
+  z-index: -1;
+  background: rgb(255 255 255 / 96%);
+  border-bottom: 1px solid var(--line);
+}
+
+#overview,
+#playground,
+#api-docs,
+#pricing,
+#models {
+  scroll-margin-top: 145px;
+}
+
+@media (max-width: 1180px) {
+  .detail-tabs { top: 76px; }
+}
+
+@media (max-width: 640px) {
+  .detail-tabs {
+    top: 70px;
+    width: calc(100% - 20px);
+    font-size: 11px;
+  }
+
+  .detail-tabs a { padding: 14px 2px; }
+
+  #overview,
+  #playground,
+  #api-docs,
+  #pricing,
+  #models { scroll-margin-top: 130px; }
+}
